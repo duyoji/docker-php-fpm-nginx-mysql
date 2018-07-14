@@ -8,3 +8,6 @@
   <h1>Static site on nginx by Docker</h1>
 </body>
 </html>
+
+<?php
+phpinfo();
