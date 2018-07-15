@@ -11,6 +11,20 @@ services:
       - ./data/html:/var/www/html
 
   app:
-    image: php:7.2.7-fpm-alpine3.7
+    build: ./app
+    env_file: .env
+    environment:
+      DATABASE_HOST: db
+    depends_on:
+      - db
     volumes:
       - ./data/html:/var/www/html
+
+  db:
+    image: mysql:5.7.22
+    env_file: .env
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./db/mysql_data:/var/lib/mysql
+      - ./db/initial.sql:/docker-entrypoint-initdb.d/initial.sql
