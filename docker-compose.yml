@@ -9,7 +9,9 @@ services:
       - app
     volumes:
       - ./web/default.conf:/etc/nginx/conf.d/default.conf
-      - ./data/html:/var/www/html
+      - ./web/global/restrictions.conf:/etc/nginx/global/restrictions.conf
+      - ./web/global/wordpress.conf:/etc/nginx/global/wordpress.conf
+      - ./data/wordpress:/var/www/wordpress
 
   app:
     build: ./app
@@ -19,7 +21,7 @@ services:
     depends_on:
       - db
     volumes:
-      - ./data/html:/var/www/html
+      - ./data/wordpress:/var/www/wordpress
 
   db:
     image: mysql:5.7.22
