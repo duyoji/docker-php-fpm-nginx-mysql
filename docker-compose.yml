@@ -9,6 +9,8 @@ services:
       - app
     volumes:
       - ./web/default.conf:/etc/nginx/conf.d/default.conf
+      - ./web/global/restrictions.conf:/etc/nginx/global/restrictions.conf
+      - ./web/global/wordpress.conf:/etc/nginx/global/wordpress.conf
       - ./data/wordpress:/var/www/wordpress
 
   app:

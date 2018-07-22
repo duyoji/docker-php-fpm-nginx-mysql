@@ -4,7 +4,7 @@ FROM nginx:1.15.1-alpine
 RUN apk --update add openssl
 
 # ルートディレクトリを作成
-RUN mkdir -p /var/www/html
+RUN mkdir -p /var/www/wordpress
 
 # 自己証明書を発行
 RUN openssl genrsa 2048 > server.key \
@@ -12,5 +12,5 @@ RUN openssl genrsa 2048 > server.key \
   && openssl x509 -in server.csr -days 3650 -req -signkey server.key > server.crt \
   && cp server.crt /etc/nginx/server.crt \
   && cp server.key /etc/nginx/server.key \
-  && chmod 755 -R /var/www/html \
+  && chmod 755 -R /var/www/wordpress \
   && chmod 400 /etc/nginx/server.key
